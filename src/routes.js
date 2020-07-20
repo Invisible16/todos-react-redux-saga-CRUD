@@ -11,8 +11,8 @@ export default function Routes() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={page.ItemPage} />
-                <Route path="/about" component={page.ItemPage} />
+                <Route exact path="/" component={page.HomePage} />
+                <Route path="/items" component={page.ItemPage} />
             </Switch>
         </Router>
     )
