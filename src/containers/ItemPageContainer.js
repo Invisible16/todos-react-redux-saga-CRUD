@@ -14,9 +14,10 @@ class ItemPageContainer extends Component {
     }
 }
 const mapStateToProps =(state)=>{
-    console.log("state container", state.items.listItem);
+    //store.reducer.listItem=state.items.listItem
+  //  console.log("state container", state.items.listItem);
     return{
-        items:state.items.listItem
+        items: state.items.listItem
     }
 }
 const mapDispatchToProps=(dispatch)=>{
@@ -26,4 +27,6 @@ const mapDispatchToProps=(dispatch)=>{
         }
     }
 }
+//HOC mapDispatchToProps truyền props là initLoad, mapStateToProps truyền props : items ,ItemPageContainer nhận 2 props trên
+//Chạy initLoad ở didmount => lấy dữ liệu> , return cho component con toàn bộ props 
 export default connect(mapStateToProps,mapDispatchToProps)(ItemPageContainer)
