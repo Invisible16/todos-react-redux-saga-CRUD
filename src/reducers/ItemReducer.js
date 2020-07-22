@@ -29,6 +29,26 @@ export default (state = DEFAULT_STATE, action) => {
                 error: true,
                 errorMessage: action.payload.errorMessage,
             }
+        case types.CREATE_ITEM_REQUEST:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case types.CREATE_ITEM_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: false,
+                errorMessage: null
+            }
+        case types.CREATE_ITEM_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: true,
+                errorMessage: action.payload.errorMessage,
+            }
         default:
             return state
     }

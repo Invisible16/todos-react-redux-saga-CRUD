@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import Item from './Item'
 export default class Items extends Component {
- 
+    state = {
+        inputAdd: ""
+    }
     render() {
         let { items } = this.props
-       // console.log("item component::::", items);
+        // console.log("item component::::", items);
         return (
             <div>
+                <input onChange={(e) => {
+                    this.setState({ inputAdd: e.target.value })
+                }} />
+                <button onClick={() => {
+                    this.props.createDispatch(this.state.inputAdd)
+                }}>Add</button>
                 <table>
                     <tbody>
                         <tr>
