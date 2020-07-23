@@ -1,8 +1,7 @@
 
 export default function callAPI(data) {
-    const objFetch = {
-        name: data
-    }
+    console.log(data)
+    const objFetch = data
     return new Promise((resolve, reject) => {
         const url = 'http://localhost:3001/items'
         fetch(url, {

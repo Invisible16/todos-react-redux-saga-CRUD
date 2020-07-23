@@ -7,6 +7,7 @@ export default function Item(props) {
             <tr>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
+                <td>{item.percent}</td>
             </tr>
     )
 }
