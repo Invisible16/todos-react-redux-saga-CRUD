@@ -4,7 +4,7 @@ import './Item.css'
 export default class Items extends Component {
     state = {
         name: "",
-        percent: 0
+        percent: ''
     }
     render() {
         let { items } = this.props
@@ -22,17 +22,40 @@ export default class Items extends Component {
                 <button onClick={() => {
                     this.props.createDispatch(this.state)
                 }}>Add</button>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Percent</th>
-                            <th>Action</th>
-                        </tr>
-                        {(items) && items.map((item, index) => <Item updateDispatch={this.props.updateDispatch} item={item} key={index} />)}
-                    </tbody>
-                </table>
+                <div className='container'>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Choose</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Percent</th>
+
+                            </tr>
+                            {(items) && items.map((item, index) =>
+                                <Item
+                                    updateChange={(newData) => { this.setState(newData) }}
+                                    item={item} key={index} />)}
+                        </tbody>
+                    </table>
+                    <form action="">
+                        <label htmlFor="name">Name:</label><br />
+                        <input type="text" id="name" name="name" defaultValue={this.state.name}
+                            onChange={(e) => {
+                                this.setState({ name: e.target.value })
+                            }}
+                        /><br />
+                        <label htmlFor="percent">Percent:</label><br />
+                        <input type="text" id="percent" name="percent" defaultValue={this.state.percent}
+                            onChange={(e) => {
+                                this.setState({ percent: e.target.value })
+                            }} /><br /><br />
+                        <button onClick={() => {
+                            this.props.updateDispatch(this.state)
+                            console.log('update')
+                        }}>Update</button>
+                    </form>
+                </div>
             </div>
         )
     }

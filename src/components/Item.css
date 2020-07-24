@@ -8,3 +8,8 @@ table,tr,td,th{
 .unhide{
     display: inline-block;
 }
+.container{
+    margin: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
