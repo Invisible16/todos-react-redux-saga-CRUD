@@ -1,6 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects'
 import getItems from '../fetchAPI/getItems'
 import createItemAPI from '../fetchAPI/createItemAPI'
+import updateItemAPI from '../fetchAPI/updateItemAPI'
 import * as types from '../constant'
 function* getListItem(action) {
    //phát ra action success or fail
@@ -27,9 +28,24 @@ function* createItemSaga(action) {
       yield put({ type: types.CREATE_ITEM_FAILURE, payload: e.message });
    }
 }
-
+function* updateItemSaga(action) {
+   //phát ra action success or fail
+   try {
+      yield updateItemAPI(action.payload);
+      yield put({
+         type: types.UPDATE_ITEM_SUCCESS
+      });
+      //re GET để lấy dữ liệu mới
+      yield put({
+         type: types.GET_ITEM_REQUEST
+      });
+   } catch (e) {
+      yield put({ type: types.UPDATE_ITEM_FAILURE, payload: e.message });
+   }
+}
 export const ItemSaga = [
    //takeEvery(type action, hàm xử lý (try catch))
    takeEvery(types.GET_ITEM_REQUEST, getListItem),
-   takeEvery(types.CREATE_ITEM_REQUEST, createItemSaga)
+   takeEvery(types.CREATE_ITEM_REQUEST, createItemSaga),
+   takeEvery(types.UPDATE_ITEM_REQUEST, updateItemSaga)
 ]

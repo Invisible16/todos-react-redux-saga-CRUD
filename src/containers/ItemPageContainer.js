@@ -31,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         createDispatch: (data) => {
             dispatch(actions.createItemAction(data))
+        },
+        updateDispatch: (data) => {
+            dispatch(actions.updateItemAction(data))
         }
     }
 }

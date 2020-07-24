@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Item from './Item'
+import './Item.css'
 export default class Items extends Component {
     state = {
         name: "",
@@ -27,8 +28,9 @@ export default class Items extends Component {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Percent</th>
+                            <th>Action</th>
                         </tr>
-                        {(items) && items.map((item, index) => <Item item={item} key={index} />)}
+                        {(items) && items.map((item, index) => <Item updateDispatch={this.props.updateDispatch} item={item} key={index} />)}
                     </tbody>
                 </table>
             </div>

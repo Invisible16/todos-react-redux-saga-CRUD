@@ -13,3 +13,10 @@ export function createItemAction(payload) {
         payload
     }
 }
+
+export function updateItemAction(payload) {
+    return {
+        type: type.UPDATE_ITEM_REQUEST,
+        payload
+    }
+}
