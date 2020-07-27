@@ -3,6 +3,10 @@ import Item from './Item'
 import './Item.css'
 export default class Items extends Component {
     state = {
+        addData: {
+            name: "",
+            percent: ''
+        },
         updateData: {
             name: "",
             percent: ''
@@ -11,20 +15,20 @@ export default class Items extends Component {
     }
     render() {
         let { items } = this.props
-        let { updateData } = this.state
+        let { updateData ,addData} = this.state
         // console.log("item component::::", items);
         return (
             <div>
                 <label>Name : </label>
                 <input onChange={(e) => {
-                    this.setState({ name: e.target.value })
+                    this.setState({addData:{...addData, name: e.target.value }})
                 }} />
                 <label>Percent : </label>
                 <input onChange={(e) => {
-                    this.setState({ percent: e.target.value })
+                    this.setState({addData:{...addData, percent: e.target.value }})
                 }} />
                 <button onClick={() => {
-                    this.props.createDispatch(this.state)
+                    this.props.createDispatch(this.state.addData)
                 }}>Add</button>
                 <div className='container'>
                     <table>
@@ -34,13 +38,14 @@ export default class Items extends Component {
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Percent</th>
-
+                                <th>Delete</th>
                             </tr>
                             {(items) && items.map((item, index) =>
                                 <Item
                                     updateChange={(newData) => { this.setState({ updateData: newData, indexChoose: index }) }}
                                     item={item} key={index}
                                     isChecked={this.state.indexChoose === index}
+                                    deleteDispatch={this.props.deleteDispatch}
                                 />)}
                         </tbody>
                     </table>

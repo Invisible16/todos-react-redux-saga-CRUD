@@ -20,3 +20,10 @@ export function updateItemAction(payload) {
         payload
     }
 }
+
+export function deleteItemAction(payload) {
+    return {
+        type: type.DELETE_ITEM_REQUEST,
+        payload
+    }
+}

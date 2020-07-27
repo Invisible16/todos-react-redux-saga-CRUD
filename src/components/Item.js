@@ -8,7 +8,6 @@ export default function Item(props) {
                 onChange={(e) => {
                     if (e.target.checked) { props.updateChange(item) }
                     else props.updateChange({ name: '', percent: '' })
-
                 }}
             /> </td>
             <td>{item.id}</td>
@@ -17,6 +16,9 @@ export default function Item(props) {
             <td>
                 {item.percent}
             </td>
+            <td> <button onClick={()=>{
+                props.deleteDispatch(item)
+            }} >Delete</button> </td>
         </tr>
     )
 }
