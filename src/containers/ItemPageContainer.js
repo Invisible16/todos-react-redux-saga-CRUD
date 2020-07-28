@@ -37,6 +37,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         deleteDispatch: (data) => {
             dispatch(actions.deleteItemAction(data))
+        },
+        searchDispatch: (data) => {
+            dispatch(actions.searchItemAction(data))
         }
     }
 }

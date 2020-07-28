@@ -11,34 +11,48 @@ export default class Items extends Component {
             name: "",
             percent: ''
         },
-        indexChoose: -1
+        indexChoose: -1,
+        searchData: ''
     }
     render() {
         let { items } = this.props
-        let { updateData ,addData} = this.state
+        let { updateData, addData, searchData } = this.state
         // console.log("item component::::", items);
         return (
             <div>
                 <label>Name : </label>
                 <input onChange={(e) => {
-                    this.setState({addData:{...addData, name: e.target.value }})
+                    this.setState({ addData: { ...addData, name: e.target.value } })
                 }} />
                 <label>Percent : </label>
                 <input onChange={(e) => {
-                    this.setState({addData:{...addData, percent: e.target.value }})
+                    this.setState({ addData: { ...addData, percent: e.target.value } })
                 }} />
                 <button onClick={() => {
                     this.props.createDispatch(this.state.addData)
                 }}>Add</button>
+                {/* SEARCH */}
+                <div className='search'>
+                    <input value={searchData}
+                    onChange={(e) => {
+                        this.setState({ searchData: e.target.value })
+                    }} />
+                    <button onClick={() => {
+                        this.props.searchDispatch(this.state.searchData)
+                    }}>Search</button>
+                    <button onClick={() => {
+                        this.setState({searchData:''})
+                        this.props.searchDispatch('')
+                    }}> Clear Search</button>
+                </div>
                 <div className='container'>
                     <table>
                         <tbody>
                             <tr>
-                                <th>Choose</th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Percent</th>
-                                <th>Delete</th>
+                                <th>Action</th>
                             </tr>
                             {(items) && items.map((item, index) =>
                                 <Item
@@ -46,27 +60,38 @@ export default class Items extends Component {
                                     item={item} key={index}
                                     isChecked={this.state.indexChoose === index}
                                     deleteDispatch={this.props.deleteDispatch}
+                                    textSearch={searchData}
                                 />)}
                         </tbody>
                     </table>
-                    <form action="">
+                    <div >
                         <h3>Id item : {updateData.id}</h3>
                         <label htmlFor="name">Name:</label><br />
-                        <input type="text" id="name" name="name" defaultValue={updateData.name}
+                        <input type="text" id="name" name="name" value={updateData.name}
                             onChange={(e) => {
                                 this.setState({ updateData: { ...updateData, name: e.target.value } })
                             }}
                         /><br />
                         <label htmlFor="percent">Percent:</label><br />
-                        <input type="text" id="percent" name="percent" defaultValue={updateData.percent}
+                        <input type="text" id="percent" name="percent" value={updateData.percent}
                             onChange={(e) => {
                                 this.setState({ updateData: { ...updateData, percent: e.target.value } })
                             }} /><br /><br />
                         <button onClick={() => {
-                            this.props.updateDispatch(updateData)
-                            console.log('update')
+                            this.props.updateDispatch({ data: updateData, textSearch: searchData })
                         }}>Update</button>
-                    </form>
+                        <button
+                            onClick={() => {
+                                this.setState({
+                                    updateData: {
+                                        name: "",
+                                        percent: ''
+                                    },
+                                    indexChoose: -1
+                                })
+                            }}
+                        >Clear update</button>
+                    </div>
                 </div>
             </div>
         )

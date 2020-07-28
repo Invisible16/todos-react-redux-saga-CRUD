@@ -2,40 +2,33 @@
   "items": [
     {
       "name": "Item 1",
-      "percent": "155",
-      "id": 1
-    },
-    {
-      "name": "Item 2",
       "percent": "3",
       "id": 2
     },
     {
-      "name": "Item 3",
-      "percent": "333",
-      "id": 3
-    },
-    {
-      "name": "123",
-      "percent": "ee",
-      "id": 4
-    },
-    {
-      "name": "abc",
-      "id": 5
-    },
-    {
-      "name": "123a",
+      "name": "123aa",
+      "percent": "1",
       "id": 6
     },
     {
-      "name": "123a",
+      "name": "1233",
+      "percent": "1",
       "id": 7
     },
     {
       "name": "dfdsf",
       "percent": "2",
       "id": 8
+    },
+    {
+      "name": "qưqw",
+      "percent": "1",
+      "id": 9
+    },
+    {
+      "name": "qưqw",
+      "percent": "1",
+      "id": 10
     }
   ]
 }
