@@ -6,6 +6,12 @@ export function getListItem(payload) {
         payload
     }
 }
+export function getPageItem(payload) {
+    return {
+        type: type.GET_PAGE_REQUEST,
+        payload
+    }
+}
 
 export function createItemAction(payload) {
     return {

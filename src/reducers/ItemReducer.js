@@ -29,6 +29,28 @@ export default (state = DEFAULT_STATE, action) => {
                 error: true,
                 errorMessage: action.payload.errorMessage,
             }
+            case types.GET_PAGE_REQUEST:
+                return {
+                    ...state,
+                    isFetching: true
+                }
+            case types.GET_PAGE_SUCCESS:
+                return {
+                    ...state,
+                    isFetching: false,
+                    dataFetched: true,
+                    error: false,
+                    errorMessage: null,
+                    listItem: action.payload.data,
+                    totalPage:action.payload.totalPage
+                }
+            case types.GET_PAGE_FAILURE:
+                return {
+                    ...state,
+                    isFetching: false,
+                    error: true,
+                    errorMessage: action.payload.errorMessage,
+                }
         case types.CREATE_ITEM_REQUEST:
             return {
                 ...state,
@@ -101,7 +123,8 @@ export default (state = DEFAULT_STATE, action) => {
                 dataFetched: true,
                 error: false,
                 errorMessage: null,
-                listItem: action.payload
+                listItem: action.payload.data,
+                totalPage:action.payload.totalPage
             }
         case types.SEARCH_ITEM_FAILURE:
             return {

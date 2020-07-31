@@ -21,13 +21,16 @@ const mapStateToProps = (state) => {
     //  console.log("state container", state.items.listItem);
     return {
         items: state.items.listItem,
+        totalPage:state.items.totalPage,
         isFetching: state.items.isFetching
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         initLoad: () => {
-            dispatch(actions.getListItem())
+            // dispatch(actions.getListItem())
+            dispatch(actions.getPageItem({curPage:1,limit:3}))
+
         },
         createDispatch: (data) => {
             dispatch(actions.createItemAction(data))
@@ -40,7 +43,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         searchDispatch: (data) => {
             dispatch(actions.searchItemAction(data))
-        }
+        },
+        pageDispatch: (data) => {
+            dispatch(actions.getPageItem(data))
+
+        },
     }
 }
 //HOC mapDispatchToProps truyền props là initLoad, mapStateToProps truyền props : items ,ItemPageContainer nhận 2 props trên
