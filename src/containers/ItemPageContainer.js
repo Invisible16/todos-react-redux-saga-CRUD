@@ -5,13 +5,15 @@ import * as actions from '../actions/itemPageActions'
 
 class ItemPageContainer extends Component {
     componentDidMount() {
-        this.props.initLoad()
+        this.props.initLoad(this.props.curPage)
     }
     render() {
         return (
             <div>
                 {this.props.isFetching && <img src='https://flevix.com/wp-content/uploads/2019/07/Curve-Loading.gif' />}
-                <Items {...this.props} />
+                <Items {...this.props} >
+                    
+                </Items>
             </div>
         )
     }
@@ -22,12 +24,14 @@ const mapStateToProps = (state) => {
     return {
         items: state.items.listItem,
         totalPage:state.items.totalPage,
-        isFetching: state.items.isFetching
+        isFetching: state.items.isFetching,
+        curPage:state.items.curPage,
+
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        initLoad: () => {
+        initLoad: (curPage) => {
             // dispatch(actions.getListItem())
             dispatch(actions.getPageItem({curPage:1,limit:3}))
 

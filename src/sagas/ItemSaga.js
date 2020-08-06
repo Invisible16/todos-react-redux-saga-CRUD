@@ -26,7 +26,7 @@ function* getPaginationItems(action) {
       console.log('totalPage',totalPage)
       const res = yield pageAPI(action.payload);
       console.log('pagi',res)
-      yield put({ type: types.GET_PAGE_SUCCESS, payload: { data: res, totalPage } });
+      yield put({ type: types.GET_PAGE_SUCCESS, payload: { data: res, totalPage,curPage:action.payload.curPage } });
    } catch (e) {
       yield put({ type: types.GET_PAGE_FAILURE, payload: e.message });
    }

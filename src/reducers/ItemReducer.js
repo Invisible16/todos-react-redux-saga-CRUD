@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
     dataFetched: false,
     isFetching: false,
     error: false,
-    errorMessage: null
+    errorMessage: null,
 }
 export default (state = DEFAULT_STATE, action) => {
     switch (action.type) {
@@ -42,7 +42,8 @@ export default (state = DEFAULT_STATE, action) => {
                     error: false,
                     errorMessage: null,
                     listItem: action.payload.data,
-                    totalPage:action.payload.totalPage
+                    totalPage:action.payload.totalPage,
+                    curPage:action.payload.curPage
                 }
             case types.GET_PAGE_FAILURE:
                 return {

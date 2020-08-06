@@ -14,7 +14,7 @@ export default function Pagination(props) {
                         </a>
                     </li>
                     {[...Array(totalPage)].map((item, index) => {
-
+                         //href={`/items/?page=${index+1}`
                         return <li className="page-item" key={index}>
                             <a className="page-link" 
                                 onClick={(e) => { props.changePage(parseInt(e.target.textContent)) }}
